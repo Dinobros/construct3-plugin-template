@@ -1,41 +1,21 @@
-import { readdir } from "node:fs/promises";
-import { join, relative } from "node:path";
 import { fileURLToPath, URL } from "node:url";
-
 import { defineConfig } from "vite";
 
-async function getEntries(directory: string)
-{
-  const dirPath = fileURLToPath(new URL(directory, import.meta.url));
-  const files = await readdir(dirPath, { recursive: true });
-  
-  const entries = { } as Record<string, string>;
-  for (const file of files)
-  {
-    const filePath = join(dirPath, file);
-
-    if (file.endsWith(".d.ts")) { continue; }
-    if (file.endsWith(".ts"))
-    {
-      const relativePath = relative("src/", filePath);
-      const entryName = relativePath.replace(/\.ts$/, "");
-
-      console.log(`Found entry: ${filePath}`);
-      console.log(`Adding entry: ${entryName}`);
-
-      entries[entryName] = filePath;
-    }
-  }
-
-  return entries;
-}
-
-const entries = await getEntries("src/");
+const realpath = (input: string) => fileURLToPath(new URL(input, import.meta.url));
 
 export default defineConfig({
   build: {
     lib: {
-      entry: entries
+      entry: {
+        "index": realpath("src/index.ts"),
+        "c3runtime/actions": realpath("src/c3runtime/actions.ts"),
+        "c3runtime/conditions": realpath("src/c3runtime/conditions.ts"),
+        "c3runtime/expressions": realpath("src/c3runtime/expressions.ts"),
+        "c3runtime/instance": realpath("src/c3runtime/instance.ts"),
+        "c3runtime/plugin": realpath("src/c3runtime/plugin.ts"),
+        "c3runtime/type": realpath("src/c3runtime/type.ts")
+      },
+      formats: ["es"]
     },
     rollupOptions: {
       output: {
@@ -44,7 +24,5 @@ export default defineConfig({
     },
     sourcemap: true
   },
-  resolve: {
-    alias: { "@": fileURLToPath(new URL("src/", import.meta.url)) }
-  }
+  resolve: { alias: { "@": realpath("src/") } }
 });

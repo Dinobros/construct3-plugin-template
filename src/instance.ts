@@ -1,31 +1,17 @@
-
 const SDK = globalThis.SDK;
 
-const PLUGIN_CLASS = SDK.Plugins.MyCompany_SingleGlobal;
-
-PLUGIN_CLASS.Instance = class MyCustomInstance extends SDK.IInstanceBase
+export class MyCustomInstance extends SDK.IInstanceBase
 {
-	constructor(sdkType: SDK.ITypeBase, inst: SDK.IObjectInstance)
-	{
-		super(sdkType, inst);
-	}
-	
-	Release()
-	{
-	}
-	
-	OnCreate()
-	{
-	}
-	
-	OnPropertyChanged(id: string, value: EditorPropertyValueType)
-	{
-	}
-	
-	LoadC2Property(name: string, valueString: string)
-	{
-		return false;		// not handled
-	}
-};
+    // eslint-disable-next-line @typescript-eslint/no-useless-constructor
+    public constructor(sdkType: SDK.ITypeBase, iInstance: SDK.IObjectInstance)
+    {
+        super(sdkType, iInstance);
+    }
 
-export {}
+    public Release(): void { }
+    public OnCreate(): void { }
+
+    public OnPropertyChanged(id: string, value: EditorPropertyValueType): void { }
+
+    public LoadC2Property(name: string, valueString: string): boolean { return false; }
+}

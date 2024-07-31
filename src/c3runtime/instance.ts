@@ -1,52 +1,41 @@
-
 const C3 = globalThis.C3;
 
-class SingleGlobalInstance extends globalThis.ISDKInstanceBase
+export class SingleGlobalInstance extends globalThis.ISDKInstanceBase
 {
-	_testProperty: number;
+    protected _testProperty: number;
 
-	constructor()
-	{
-		super();
-		
-		// Initialise object properties
-		this._testProperty = 0;
-		
-		const properties = this._getInitProperties();
-		if (properties)		// note properties may be null in some cases
-		{
-			this._testProperty = properties[0] as number;
-		}
-	}
-	
-	_release()
-	{
-		super._release();
-	}
+    public get testProperty() { return this._testProperty; }
+    public set testProperty(value) { this._testProperty = value; }
 
-	_setTestProperty(n: number)
-	{
-		this._testProperty = n;
-	}
+    public constructor()
+    {
+        super();
 
-	_getTestProperty()
-	{
-		return this._testProperty;
-	}
-	
-	_saveToJson()
-	{
-		return {
-			// data to be saved for savegames
-		};
-	}
-	
-	_loadFromJson(o: any)
-	{
-		// load state for savegames
-	}
-};
+        // Initialise object properties
+        this._testProperty = 0;
 
-C3.Plugins.MyCompany_SingleGlobal.Instance = SingleGlobalInstance;
+        const properties = this._getInitProperties();
+        if (properties) // note properties may be null in some cases
+        {
+            this._testProperty = properties[0] as number;
+        }
+    }
 
-export type { SingleGlobalInstance as SDKInstanceClass };
+    public _release(): void
+    {
+        super._release();
+    }
+    public _saveToJson(): JSONValue
+    {
+        return {
+            // data to be saved for savegames
+        };
+    }
+
+    public _loadFromJson(o: JSONValue): void
+    {
+        // load state for savegames
+    }
+}
+
+C3.Plugins.Dinobros_Construct3PluginTemplate.Instance = SingleGlobalInstance;

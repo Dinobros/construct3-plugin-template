@@ -1,14 +1,10 @@
-
 const SDK = globalThis.SDK;
 
-const PLUGIN_CLASS = SDK.Plugins.MyCompany_SingleGlobal;
-
-PLUGIN_CLASS.Type = class MyCustomPluginType extends SDK.ITypeBase
+export class MyCustomPluginType extends SDK.ITypeBase
 {
-	constructor(sdkPlugin: SDK.IPluginBase, iObjectType: SDK.IObjectType)
-	{
-		super(sdkPlugin, iObjectType);
-	}
-};
-
-export {}
+    // eslint-disable-next-line @typescript-eslint/no-useless-constructor
+    public constructor(sdkPlugin: SDK.IPluginBase, iObjectType: SDK.IObjectType)
+    {
+        super(sdkPlugin, iObjectType);
+    }
+}

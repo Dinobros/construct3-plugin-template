@@ -1,16 +1,16 @@
-
-import type { SDKInstanceClass } from "./instance.ts";
+import type { SingleGlobalInstance } from "./instance";
 
 const C3 = globalThis.C3;
 
-C3.Plugins.MyCompany_SingleGlobal.Type = class SingleGlobalType extends globalThis.ISDKObjectTypeBase<SDKInstanceClass>
+export class SingleGlobalType extends globalThis.ISDKObjectTypeBase<SingleGlobalInstance>
 {
-	constructor()
-	{
-		super();
-	}
-	
-	_onCreate()
-	{
-	}
-};
+    // eslint-disable-next-line @typescript-eslint/no-useless-constructor
+    public constructor()
+    {
+        super();
+    }
+
+    public _onCreate(): void { }
+}
+
+C3.Plugins.Dinobros_Construct3PluginTemplate.Type = SingleGlobalType;

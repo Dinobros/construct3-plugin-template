@@ -1,13 +1,13 @@
-
 const C3 = globalThis.C3;
 
-C3.Plugins.MyCompany_SingleGlobal = class SingleGlobalPlugin extends globalThis.ISDKPluginBase
+export class SingleGlobalPlugin extends globalThis.ISDKPluginBase
 {
-	constructor()
-	{
-		super();
-	}
-};
+    // eslint-disable-next-line @typescript-eslint/no-useless-constructor
+    public constructor()
+    {
+        super();
+    }
+}
 
-// Necessary for TypeScript to treat this file as a module
-export {}
+// eslint-disable-next-line camelcase
+C3.Plugins.Dinobros_Construct3PluginTemplate = SingleGlobalPlugin;
