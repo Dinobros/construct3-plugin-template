@@ -1,5 +1,5 @@
 
-type PluginInfoCategory = "data-and-storage" | "form-controls" | "general" | "input" | "media" | "monetisation" | "platform-specific" | "web" | "other";
+type PluginInfoCategory = "3d" | "data-and-storage" | "html-elements" | "general" | "input" | "media" | "monetisation" | "platform-specific" | "web" | "other";
 type PluginInfoPluginType = "object" | "world";
 type PluginInfoScriptType = "" | "module";
 
@@ -21,8 +21,8 @@ interface PluginInfoFileDependency {
 	filename: string,
 	fileType?: string,
 	scriptType?: PluginInfoScriptType,
-	type: "copy-to-output" | "inline-script" | "external-dom-script" | "external-runtime-script" | "external-css" | "wrapper-extension",
-	platform?: "all" | "windows-x86" | "windows-x64" | "windows-arm64" | "xbox-uwp-x64"
+	type: "copy-to-output" | "external-dom-script" | "external-runtime-script" | "external-css" | "wrapper-extension",
+	platform?: "all" | "windows-x86" | "windows-x64" | "windows-arm64" | "xbox-uwp-x64" | "macos-universal" | "linux-x64" | "linux-arm" | "linux-arm64"
 }
 
 declare namespace SDK {

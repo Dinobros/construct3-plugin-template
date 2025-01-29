@@ -23,9 +23,10 @@ declare class IInstance
 	
 	readonly runtime: IRuntime;
 	readonly objectType: IObjectType<this>;
-	readonly plugin: IPlugin;
+	readonly plugin: IPlugin_;
 
 	readonly uid: number;
+	readonly iid: number;
 	readonly templateName: string;
 
 	timeScale: number;
@@ -40,4 +41,7 @@ declare class IInstance
 
 	getOtherContainerInstances(): IInstance[];
 	otherContainerInstances(): Iterable<IInstance>;
+
+	signal(tag: string): void;
+	waitForSignal(tag: string): Promise<void>;
 }

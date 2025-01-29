@@ -19,7 +19,7 @@ declare class IObjectClass<InstanceType extends IInstance, EventMapType = Object
 	readonly name: string;
 
 	readonly runtime: IRuntime;
-	readonly plugin: IPlugin;
+	readonly plugin: IPlugin_;
 
 	/** Get all instances belonging to this object type or family. */
 	getAllInstances<InstT extends InstanceType = InstanceType>(): InstT[];
@@ -32,6 +32,9 @@ declare class IObjectClass<InstanceType extends IInstance, EventMapType = Object
 
 	/** Get all the currently picked instances, when called from an event sheet. */
 	getPickedInstances<InstT extends InstanceType = InstanceType>(): InstT[];
+
+	/** Return the instance with the same IID, with wraparound, if one exists. */
+	getPairedInstance<InstT extends InstanceType = InstanceType>(otherInst: IInstance): InstT | null;
 
 	/** Iterate all currently picked instances, when called from an event sheet. */
 	pickedInstances<InstT extends InstanceType = InstanceType>(): Iterable<InstT>;

@@ -12,7 +12,6 @@ const SDK = globalThis.SDK;
  *  and create an entirely new plugin with a different plugin ID.
 */
 
-// eslint-disable-next-line camelcase
 export class MyCustomPlugin extends SDK.IPluginBase
 {
     public static readonly ID = "Dinobros_Construct3PluginTemplate";
@@ -30,6 +29,10 @@ export class MyCustomPlugin extends SDK.IPluginBase
         this._info.SetAuthor("Dinobros Srl");
         this._info.SetHelpUrl(globalThis.lang(".help-url"));
         this._info.SetIsSingleGlobal(true);
+
+        this._info.AddC3RuntimeScript("c3runtime/internals.js");
+        this._info.AddC3RuntimeScript("c3runtime/runtime.js");
+        this._info.AddC3RuntimeScript("c3runtime/vendors.js");
 
         SDK.Lang.PushContext(".properties");
 

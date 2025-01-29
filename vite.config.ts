@@ -19,10 +19,22 @@ export default defineConfig({
     },
     rollupOptions: {
       output: {
-        dir: "dist"
+        dir: "dist",
+        chunkFileNames: "c3runtime/[name].js",
+
+        manualChunks: function(id)
+        {
+          if (/src\/\w+\.ts/.exec(id)) { return undefined; }
+          if (id.includes("node_modules")) { return "vendors"; }
+          if (!(id.includes("c3runtime"))) { return "internals"; }
+          else if (/src\/c3runtime\/\w+\/(?!index)\w+\.ts/.exec(id)) { return "runtime"; }
+
+          return undefined;
+        }
       }
     },
     sourcemap: true
   },
-  resolve: { alias: { "@": realpath("src/") } }
+  resolve: { alias: { "@": realpath("src/") } },
+  server: { cors: true }
 });

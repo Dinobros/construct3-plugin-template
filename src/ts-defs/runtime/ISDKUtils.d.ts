@@ -8,4 +8,9 @@ declare class ISDKUtils
     sendWrapperExtensionMessageAsync(wrapperComponentId: string, messageId: string, params?: WrapperExtensionParameterType[]): Promise<JSONValue>;
 
 	createLoopingConditionContext(loopName?: string): ILoopingConditionContext;
+
+	isAutoSuspendEnabled: boolean;
+	setSuspended(isSuspended: boolean): void;
+
+	getObjectClassBySid(sid: number): IObjectClass<IInstance>;
 }

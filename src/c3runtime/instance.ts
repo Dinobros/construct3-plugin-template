@@ -11,11 +11,11 @@ export class SingleGlobalInstance extends globalThis.ISDKInstanceBase
     {
         super();
 
-        // Initialise object properties
+        // Initialize object properties...
         this._testProperty = 0;
 
         const properties = this._getInitProperties();
-        if (properties) // note properties may be null in some cases
+        if (properties) // Note: properties may be null in some cases!
         {
             this._testProperty = properties[0] as number;
         }
@@ -27,14 +27,12 @@ export class SingleGlobalInstance extends globalThis.ISDKInstanceBase
     }
     public _saveToJson(): JSONValue
     {
-        return {
-            // data to be saved for savegames
-        };
+        return { /* Data to be saved in savegames.. */ };
     }
 
     public _loadFromJson(o: JSONValue): void
     {
-        // load state for savegames
+        // Load state from savegames...
     }
 }
 

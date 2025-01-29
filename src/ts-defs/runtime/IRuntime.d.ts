@@ -117,7 +117,8 @@ declare class IRuntime extends ConstructEventTarget<RuntimeEventMap>
 	readonly keyboard?: IKeyboardObjectType<IInstance>;
 	readonly mouse?: IMouseObjectType<IInstance>;
 	readonly touch?: ITouchObjectType<IInstance>;
-	readonly platformInfo?: IPlatformInfoObjectType<IInstance>;
+	readonly platformInfo: IPlatformInfo;
+	readonly sdk: ISDKUtils;
 
 	readonly layout: IAnyProjectLayout;
 	getLayout(nameOrIndex: LayoutParameter): IAnyProjectLayout;
@@ -126,6 +127,7 @@ declare class IRuntime extends ConstructEventTarget<RuntimeEventMap>
 
 	readonly projectName: string;
 	readonly projectVersion: string;
+	readonly exportDate: Date;
 	readonly isInWorker: boolean;
 	readonly viewportWidth: number;
 	readonly viewportHeight: number;
@@ -139,6 +141,7 @@ declare class IRuntime extends ConstructEventTarget<RuntimeEventMap>
 	get gameTime(): number;
 	get wallTime(): number;
 	timeScale: number;
+	get isSuspended(): boolean;
 
 	/**
 	 * @deprecated Use framesPerSecond instead of fps
@@ -152,6 +155,9 @@ declare class IRuntime extends ConstructEventTarget<RuntimeEventMap>
 	framerateMode: FramerateModeType;
 	minDt: number;
 	maxDt: number;
+
+	get loadingProgress(): number;
+	get imageLoadingProgress(): number;
 
 	getInstanceByUid(uid: number): IInstance | null;
 	sortZOrder(iterable: Iterable<IWorldInstance>, callback: (a: IWorldInstance, b: IWorldInstance) => number): void;
