@@ -1,16 +1,16 @@
-import type { SingleGlobalInstance } from "./instance";
-
-const C3 = globalThis.C3;
+import type CustomC3Instance from "./instance";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type Condition<T extends unknown[] = any[]> = (this: SingleGlobalInstance, ...args: T) => boolean;
+export type Condition<T extends unknown[] = any[]> = (this: CustomC3Instance, ...args: T) => boolean;
 
-export const SingleGlobalConditions = {
-    IsLargeNumber(this: SingleGlobalInstance, num: number): boolean
+const C3 = globalThis.C3;
+const CustomC3Conditions: Record<string, Condition> = {
+    IsLargeNumber(this: CustomC3Instance, num: number): boolean
     {
         return num > 100;
     }
+};
 
-} satisfies Record<string, Condition>;
+C3.Plugins.Dinobros_Construct3PluginTemplate.Cnds = CustomC3Conditions;
 
-C3.Plugins.Dinobros_Construct3PluginTemplate.Cnds = SingleGlobalConditions;
+export default CustomC3Conditions;

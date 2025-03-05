@@ -1,8 +1,8 @@
-import type { SingleGlobalInstance } from "./instance";
+import type CustomC3Instance from "./instance";
 
 const C3 = globalThis.C3;
 
-export class SingleGlobalType extends globalThis.ISDKObjectTypeBase<SingleGlobalInstance>
+export default class CustomC3Type extends globalThis.ISDKObjectTypeBase<CustomC3Instance>
 {
     public constructor()
     {
@@ -12,4 +12,4 @@ export class SingleGlobalType extends globalThis.ISDKObjectTypeBase<SingleGlobal
     public override _onCreate(): void { /* ... */ }
 }
 
-C3.Plugins.Dinobros_Construct3PluginTemplate.Type = SingleGlobalType;
+C3.Plugins.Dinobros_Construct3PluginTemplate.Type = CustomC3Type;

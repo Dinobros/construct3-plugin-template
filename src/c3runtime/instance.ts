@@ -1,6 +1,6 @@
 const C3 = globalThis.C3;
 
-export class SingleGlobalInstance extends globalThis.ISDKInstanceBase
+export default class CustomC3Instance extends globalThis.ISDKInstanceBase
 {
     protected _testProperty: number;
 
@@ -36,4 +36,4 @@ export class SingleGlobalInstance extends globalThis.ISDKInstanceBase
     }
 }
 
-C3.Plugins.Dinobros_Construct3PluginTemplate.Instance = SingleGlobalInstance;
+C3.Plugins.Dinobros_Construct3PluginTemplate.Instance = CustomC3Instance;

@@ -12,26 +12,29 @@ const SDK = globalThis.SDK;
  *  and create an entirely new plugin with a different plugin ID.
 */
 
-export class MyCustomPlugin extends SDK.IPluginBase
+export default class CustomSDKPlugin extends SDK.IPluginBase
 {
     public static readonly ID = "Dinobros_Construct3PluginTemplate";
+    public static readonly Author = "Dinobros Srl";
+    public static readonly Version = "1.0.1";
     public static readonly Category = "general";
 
     public constructor()
     {
-        super(MyCustomPlugin.ID);
+        super(CustomSDKPlugin.ID);
 
-        SDK.Lang.PushContext(`plugins.${MyCustomPlugin.ID.toLowerCase()}`);
+        SDK.Lang.PushContext(`plugins.${CustomSDKPlugin.ID.toLowerCase()}`);
 
         this._info.SetName(globalThis.lang(".name"));
         this._info.SetDescription(globalThis.lang(".description"));
-        this._info.SetCategory(MyCustomPlugin.Category);
-        this._info.SetAuthor("Dinobros Srl");
+        this._info.SetCategory(CustomSDKPlugin.Category);
+        this._info.SetAuthor(CustomSDKPlugin.Author);
+        this._info.SetVersion(CustomSDKPlugin.Version);
         this._info.SetHelpUrl(globalThis.lang(".help-url"));
         this._info.SetIsSingleGlobal(true);
 
-        this._info.AddC3RuntimeScript("c3runtime/internals.js");
         this._info.AddC3RuntimeScript("c3runtime/runtime.js");
+        this._info.AddC3RuntimeScript("c3runtime/internals.js");
         this._info.AddC3RuntimeScript("c3runtime/vendors.js");
 
         SDK.Lang.PushContext(".properties");
