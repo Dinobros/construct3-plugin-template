@@ -16,7 +16,7 @@ export default class CustomSDKPlugin extends SDK.IPluginBase
 {
     public static readonly ID = "Dinobros_Construct3PluginTemplate";
     public static readonly Author = "Dinobros Srl";
-    public static readonly Version = "1.0.1";
+    public static readonly Version = "1.1.0";
     public static readonly Category = "general";
 
     public constructor()
@@ -31,11 +31,14 @@ export default class CustomSDKPlugin extends SDK.IPluginBase
         this._info.SetAuthor(CustomSDKPlugin.Author);
         this._info.SetVersion(CustomSDKPlugin.Version);
         this._info.SetHelpUrl(globalThis.lang(".help-url"));
+        this._info.SetIcon("icon.svg", "image/svg+xml");
         this._info.SetIsSingleGlobal(true);
+        this._info.SetCanBeBundled(true);
 
-        this._info.AddC3RuntimeScript("c3runtime/runtime.js");
-        this._info.AddC3RuntimeScript("c3runtime/internals.js");
-        this._info.AddC3RuntimeScript("c3runtime/vendors.js");
+        this._info.SetC3RuntimeScripts(["c3runtime/index.js", "c3runtime/vendor.js"]);
+        this._info.SetDOMSideScripts(["c3runtime/domSide.js"]);
+
+        this._info.SetRuntimeModuleMainScript("c3runtime/index.js");
 
         SDK.Lang.PushContext(".properties");
 

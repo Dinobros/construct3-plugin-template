@@ -1,5 +1,3 @@
-const C3 = globalThis.C3;
-
 export default class CustomC3Instance extends globalThis.ISDKInstanceBase
 {
     protected _testProperty: number;
@@ -9,7 +7,7 @@ export default class CustomC3Instance extends globalThis.ISDKInstanceBase
 
     public constructor()
     {
-        super();
+        super({ domComponentId: "dinobros-construct3_plugin_template-dom_handler" });
 
         // Initialize object properties...
         this._testProperty = 0;
@@ -35,5 +33,3 @@ export default class CustomC3Instance extends globalThis.ISDKInstanceBase
         // Load state from savegames...
     }
 }
-
-C3.Plugins.Dinobros_Construct3PluginTemplate.Instance = CustomC3Instance;

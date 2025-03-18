@@ -1,6 +1,6 @@
 {
   "name": "@dinobros/construct3-plugin-template",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "An opinionated ready-to-use Construct 3 Plugin template based on TypeScript & Vite.js. 🎮",
   "keywords": [
     "Construct3",
@@ -29,7 +29,7 @@
   "type": "module",
   "scripts": {
     "dev": "concurrently -P --kill-others --prefix \"[{name}]\" --prefix-colors \"magenta,cyan\" --names \"BUILD,SERVER\" \"vite build --watch\" \"vite preview --port 5173 {@}\" --",
-    "build": "vite build --sourcemap false && mkdir -p dist/ && cd .build/ && zip -r ../dist/Dinobros_DinostructPlugin-v$(jq -r .version ../package.json).c3addon *",
+    "build": "vite build --sourcemap false && mkdir -p dist/ && cd .build/ && zip -r ../dist/Dinobros_Construct3PluginTemplate-v$(jq -r .version ../package.json).c3addon *",
     "preview": "vite preview",
     "typecheck": "tsc",
     "lint": "eslint .",
