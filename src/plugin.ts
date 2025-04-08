@@ -16,7 +16,7 @@ export default class CustomSDKPlugin extends SDK.IPluginBase
 {
     public static readonly ID = "Dinobros_Construct3PluginTemplate";
     public static readonly Author = "Dinobros Srl";
-    public static readonly Version = "1.1.0";
+    public static readonly Version = "1.1.1";
     public static readonly Category = "general";
 
     public constructor()
