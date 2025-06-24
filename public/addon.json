@@ -6,7 +6,7 @@
   "type": "plugin",
   "name": "Construct 3 Plugin Template",
   "id": "Dinobros_Construct3PluginTemplate",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "author": "Dinobros Srl",
   "website": "https://www.dinobros.com/",
   "documentation": "https://github.com/Dinobros/construct3-plugin-template#readme",
