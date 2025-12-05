@@ -5,6 +5,7 @@ export default defineConfig({
   test: {
     environment: "jsdom",
     exclude: configDefaults.exclude,
-    root: fileURLToPath(new URL("./", import.meta.url))
+    root: fileURLToPath(new URL("./", import.meta.url)),
+    setupFiles: ["./tests/setup.ts"]
   }
 });

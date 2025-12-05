@@ -3,7 +3,7 @@
 import { describe, it, expect, vi } from "vitest";
 
 import CustomC3Actions from "../src/c3runtime/actions";
-import type CustomC3Instance from "../src/c3runtime/instance";
+import CustomC3Instance from "../src/c3runtime/instance";
 
 describe("Actions", () =>
 {
@@ -14,7 +14,7 @@ describe("Actions", () =>
             const _consoleLog = vi.spyOn(console, "log")
                 .mockImplementation(() => { });
 
-            const instance = { testProperty: 42 } as CustomC3Instance;
+            const instance = new CustomC3Instance();
             CustomC3Actions.LogToConsole.call(instance);
 
             expect(_consoleLog)
