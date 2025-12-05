@@ -29,22 +29,26 @@
   "type": "module",
   "scripts": {
     "dev": "concurrently -P --kill-others --prefix \"[{name}]\" --prefix-colors \"magenta,cyan\" --names \"BUILD,SERVER\" \"vite build --watch\" \"vite preview --outDir .build --port 5173 {@}\" --",
+    "build:only": "vite build",
     "build": "vite build --sourcemap false && mkdir -p dist/ && cd .build/ && zip -r ../dist/Dinobros_Construct3PluginTemplate-v$(jq -r .version ../package.json).c3addon *",
     "preview": "vite preview",
     "typecheck": "tsc",
     "lint": "eslint .",
+    "test": "vitest run",
     "prepare": "husky",
     "ci": "bun install --frozen-lockfile"
   },
   "devDependencies": {
-    "@byloth/eslint-config-typescript": "^3.1.0",
-    "@eslint/compat": "^1.3.0",
-    "@types/node": "^22.15.32",
-    "concurrently": "^9.2.0",
-    "eslint": "^9.29.0",
+    "@byloth/eslint-config-typescript": "^3.2.2",
+    "@eslint/compat": "^1.4.1",
+    "@types/node": "^22.19.1",
+    "concurrently": "^9.2.1",
+    "eslint": "^9.39.1",
     "husky": "^9.1.7",
-    "typescript": "^5.8.3",
-    "vite": "^7.0.0"
+    "jsdom": "^27.2.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.2.6",
+    "vitest": "^4.0.15"
   },
   "private": true
 }
