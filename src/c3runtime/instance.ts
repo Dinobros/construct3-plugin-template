@@ -1,6 +1,6 @@
 export default class CustomC3Instance extends globalThis.ISDKInstanceBase
 {
-    public static readonly Version = "1.1.2";
+    public static readonly Version = "1.2.0";
 
     protected _testProperty: number;
 
