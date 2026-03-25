@@ -1,6 +1,6 @@
 {
   "name": "@dinobros/construct3-plugin-template",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "An opinionated ready-to-use Construct 3 Plugin template based on TypeScript & Vite.js. 🎮",
   "keywords": [
     "Construct3",

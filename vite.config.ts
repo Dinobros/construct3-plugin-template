@@ -69,13 +69,13 @@ export default defineConfig({
       }
     },
     {
-      name: "domSide:cjs",
+      name: "domSide:iife",
       generateBundle: async function(): Promise<void>
       {
         const result = await build({
           entryPoints: [realpath("src/c3runtime/domSide.ts")],
           bundle: true,
-          format: "cjs",
+          format: "iife",
           platform: "browser",
           outfile: ".build/c3runtime/domSide.js",
           target: TARGET,

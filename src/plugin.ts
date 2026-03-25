@@ -16,7 +16,6 @@ export default class CustomSDKPlugin extends SDK.IPluginBase
 {
     public static readonly ID = "Dinobros_Construct3PluginTemplate";
     public static readonly Author = "Dinobros Srl";
-    public static readonly Version = "1.2.0";
     public static readonly Category = "general";
 
     public constructor()
@@ -29,7 +28,6 @@ export default class CustomSDKPlugin extends SDK.IPluginBase
         this._info.SetDescription(globalThis.lang(".description"));
         this._info.SetCategory(CustomSDKPlugin.Category);
         this._info.SetAuthor(CustomSDKPlugin.Author);
-        this._info.SetVersion(CustomSDKPlugin.Version);
         this._info.SetHelpUrl(globalThis.lang(".help-url"));
         this._info.SetIcon("icon.svg", "image/svg+xml");
         this._info.SetIsSingleGlobal(true);
