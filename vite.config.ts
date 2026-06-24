@@ -3,13 +3,18 @@ import { fileURLToPath, URL } from "node:url";
 
 import { build, transform } from "esbuild";
 import { defineConfig } from "vite";
+import type { ResolvedConfig } from "vite";
 
 const TARGET = "es2020";
 
-const realpath = (input: string) => fileURLToPath(new URL(input, import.meta.url));
-async function* listFiles(path: string): AsyncGenerator<string>
+const _realpath = (input: string) => fileURLToPath(new URL(input, import.meta.url));
+
+let _sourcemap: boolean | "inline" | "hidden" = false;
+const _mapSourcemap = (value: boolean | "inline" | "hidden") => (value === "hidden") ? "external" : value;
+
+async function* _listFiles(path: string): AsyncGenerator<string>
 {
-  const publicDir = realpath(path);
+  const publicDir = _realpath(path);
   const publicFiles = await readdir(publicDir, { recursive: true });
 
   for (const filePath of publicFiles.map((fileName) => `${publicDir}/${fileName}`))
@@ -27,8 +32,8 @@ export default defineConfig({
     minify: "esbuild",
     lib: {
       entry: {
-        "index": realpath("src/index.ts"),
-        "c3runtime/index": realpath("src/c3runtime/index.ts")
+        "index": _realpath("src/index.ts"),
+        "c3runtime/index": _realpath("src/c3runtime/index.ts")
       },
       formats: ["es"]
     },
@@ -52,7 +57,7 @@ export default defineConfig({
       name: "watch:public",
       buildStart: async function(): Promise<void>
       {
-        for await (const file of listFiles("public")) { this.addWatchFile(file); }
+        for await (const file of _listFiles("public")) { this.addWatchFile(file); }
       }
     },
     {
@@ -70,19 +75,20 @@ export default defineConfig({
     },
     {
       name: "domSide:iife",
+      configResolved: function(config: ResolvedConfig): void { _sourcemap = config.build.sourcemap; },
       generateBundle: async function(): Promise<void>
       {
         const result = await build({
-          entryPoints: [realpath("src/c3runtime/domSide.ts")],
+          entryPoints: [_realpath("src/c3runtime/domSide.ts")],
           bundle: true,
           format: "iife",
           platform: "browser",
           outfile: ".build/c3runtime/domSide.js",
           target: TARGET,
           minify: true,
-          alias: { "@": realpath("src") },
+          alias: { "@": _realpath("src") },
           write: false,
-          sourcemap: true
+          sourcemap: _mapSourcemap(_sourcemap)
         });
 
         for (const file of result.outputFiles)
@@ -118,6 +124,6 @@ export default defineConfig({
       }
     }
   ],
-  resolve: { alias: { "@": realpath("src/") } },
+  resolve: { alias: { "@": _realpath("src/") } },
   server: { cors: true }
 });

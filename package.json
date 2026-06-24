@@ -1,6 +1,6 @@
 {
   "name": "@dinobros/construct3-plugin-template",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "An opinionated ready-to-use Construct 3 Plugin template based on TypeScript & Vite.js. 🎮",
   "keywords": [
     "Construct3",
@@ -39,16 +39,16 @@
     "ci": "bun install --frozen-lockfile"
   },
   "devDependencies": {
-    "@byloth/eslint-config-typescript": "^4.0.0",
-    "@eslint/compat": "^2.0.3",
-    "@types/node": "^22.19.15",
-    "concurrently": "^9.2.1",
-    "eslint": "^10.0.3",
+    "@byloth/eslint-config-typescript": "^4.0.2",
+    "@eslint/compat": "^2.1.0",
+    "@types/node": "^24.13.2",
+    "concurrently": "^10.0.3",
+    "eslint": "^10.5.0",
     "husky": "^9.1.7",
-    "jsdom": "^29.0.1",
-    "typescript": "^5.9.3",
-    "vite": "^8.0.1",
-    "vitest": "^4.1.0"
+    "jsdom": "^29.1.1",
+    "typescript": "^6.0.3",
+    "vite": "^8.1.0",
+    "vitest": "^4.1.9"
   },
   "private": true
 }
