@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "target": "ES2020",
     "module": "ESNext",
     "moduleDetection": "force",
     "moduleResolution": "Bundler",
@@ -20,12 +20,15 @@
     "allowImportingTsExtensions": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
+    "paths": { "@/*": ["./src/*"] },
     "rootDir": ".",
     "outDir": "./dist"
   },
   "include": [
     "./src",
-    "./vite.config.ts"
+    "./vite.shared.ts",
+    "./vite.config.editor.ts",
+    "./vite.config.runtime.ts"
   ],
   "types": ["node"]
 }

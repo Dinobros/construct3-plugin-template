@@ -1,6 +1,6 @@
 {
   "name": "@dinobros/construct3-plugin-template",
-  "version": "1.2.2",
+  "version": "1.3.0",
   "description": "An opinionated ready-to-use Construct 3 Plugin template based on TypeScript & Vite.js. 🎮",
   "keywords": [
     "Construct3",
@@ -28,10 +28,10 @@
   "license": "Apache-2.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently -P --kill-others --prefix \"[{name}]\" --prefix-colors \"magenta,cyan\" --names \"BUILD,SERVER\" \"vite build --watch\" \"vite preview --outDir .build --port 5173 {@}\" --",
-    "build:only": "vite build",
-    "build": "vite build --sourcemap false && mkdir -p dist/ && cd .build/ && zip -r ../dist/Dinobros_Construct3PluginTemplate-v$(jq -r .version ../package.json).c3addon *",
-    "preview": "vite preview",
+    "dev": "rm -rf .build && mkdir -p .build && concurrently -P --kill-others --prefix \"[{name}]\" --prefix-colors \"magenta,yellow,cyan\" --names \"EDITOR,RUNTIME,SERVER\" \"vite build -c vite.config.editor.ts --watch\" \"vite build -c vite.config.runtime.ts --watch\" \"vite preview -c vite.config.runtime.ts --outDir .build --port 5173 {@}\" --",
+    "build:only": "rm -rf .build && vite build -c vite.config.editor.ts && vite build -c vite.config.runtime.ts",
+    "build": "rm -rf .build && vite build -c vite.config.editor.ts --sourcemap false && vite build -c vite.config.runtime.ts --sourcemap false && mkdir -p dist/ && rm -f dist/Dinobros_Construct3PluginTemplate-v$(jq -r .version package.json).c3addon && cd .build/ && zip -r ../dist/Dinobros_Construct3PluginTemplate-v$(jq -r .version ../package.json).c3addon *",
+    "preview": "vite preview -c vite.config.runtime.ts --outDir .build",
     "typecheck": "tsc",
     "lint": "eslint .",
     "test": "vitest run",
@@ -41,14 +41,14 @@
   "devDependencies": {
     "@byloth/eslint-config-typescript": "^4.0.2",
     "@eslint/compat": "^2.1.0",
-    "@types/node": "^24.13.2",
-    "concurrently": "^10.0.3",
-    "eslint": "^10.5.0",
+    "@types/node": "^24.13.3",
+    "concurrently": "^10.0.4",
+    "eslint": "^10.8.0",
     "husky": "^9.1.7",
-    "jsdom": "^29.1.1",
+    "jsdom": "^30.0.0",
     "typescript": "^6.0.3",
-    "vite": "^8.1.0",
-    "vitest": "^4.1.9"
+    "vite": "^8.2.0",
+    "vitest": "^4.1.10"
   },
   "private": true
 }
